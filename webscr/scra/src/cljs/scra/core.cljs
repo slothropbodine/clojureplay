@@ -1,6 +1,6 @@
 (ns scra.core
   (:require [cljs.nodejs :as nodejs]
-  			[cljs-http.client :as http]
+  			    [cljs-http.client :as http]
             [cljs.core.async :refer [<!]])
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
