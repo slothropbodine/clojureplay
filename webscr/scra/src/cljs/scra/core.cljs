@@ -10,6 +10,7 @@
 (nodejs/enable-util-print!)
 
 (def selector "div.entry.unvoted > div.top-matter > p.title > a")
+(def url "http://reddit.com")
 
 (defn domfrom [bodystring]
   (.load js/cheerio bodystring))
@@ -21,7 +22,7 @@
                     (.text (js/cheerio (aget cheerobj x))))
                   (range length)))))
 
-(go (let [resp (<! (http/get "http://reddit.com")) 
+(go (let [resp (<! (http/get url)) 
           dom (domfrom (:body resp))]
       (doseq [x (getvec 
                   (dom selector))]
