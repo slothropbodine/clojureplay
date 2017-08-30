@@ -18,14 +18,14 @@
   (let [length (aget cheerobj "length")]
     (loop [x 0
            goodarr []]
-      (if (= x length) 
+      (if (= x length)
         (identity goodarr)
-        (recur (inc x) 
-               (conj goodarr 
+        (recur (inc x)
+               (conj goodarr
                      (.text (js/cheerio (aget cheerobj x)))))))))
 
-(go (let [resp (<! (http/get "http://reddit.com"))]   
+(go (let [resp (<! (http/get "http://reddit.com"))]
       (let [dom (domfrom (:body resp))]
-        (println 
+        (println
           (get (getarr (dom selector))
                0)))))
