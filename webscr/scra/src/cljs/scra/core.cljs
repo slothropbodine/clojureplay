@@ -14,16 +14,19 @@
 (defn domfrom [bodystring]
   (.load js/cheerio bodystring))
 
-(defn getarr [cheerobj]
-  "Return list of text values for dom nodes"
+(defn getvec [cheerobj]
+  "Return vector of text values for dom nodes"
   (let [length (aget cheerobj "length")]
     (into [] (map (fn [x] 
                     (.text (js/cheerio (aget cheerobj x))))
                   (range length)))))
 
-
-
 (go (let [resp (<! (http/get "http://reddit.com"))]
       (let [dom (domfrom (:body resp))]
-        (println (get (getarr (dom selector))
-                      1)))));;which post
+        (doseq [x (getvec 
+                    (dom selector))]
+          (println "--------------------------------------------------------")
+          (println x))
+        (println "--------------------------------------------------------")
+        )))
+
