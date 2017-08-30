@@ -15,17 +15,15 @@
   (.load js/cheerio bodystring))
 
 (defn getarr [cheerobj]
+  "Return list of text values for dom nodes"
   (let [length (aget cheerobj "length")]
-    (loop [x 0
-           goodarr []]
-      (if (= x length)
-        (identity goodarr)
-        (recur (inc x)
-               (conj goodarr
-                     (.text (js/cheerio (aget cheerobj x)))))))))
+    (into [] (map (fn [x] 
+                    (.text (js/cheerio (aget cheerobj x))))
+                  (range length)))))
+
+
 
 (go (let [resp (<! (http/get "http://reddit.com"))]
       (let [dom (domfrom (:body resp))]
-        (println
-          (get (getarr (dom selector))
-               0)))))
+        (println (get (getarr (dom selector))
+                      1)))));;which post
