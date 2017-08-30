@@ -4,15 +4,16 @@
             [cljs.core.async :refer [<!]])
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
-(def nodemodulesloc "/resources/public/js/node_modules/")
-(defn fullpath [modname]
-  (str (.cwd nodejs/process) nodemodulesloc modname))
+;;=====FOR INCLUDING FROM REPL=====
+;;(def nodemodulesloc "/resources/public/js/node_modules/")
+;;(defn fullpath [modname]
+;;  (str (.cwd nodejs/process) nodemodulesloc modname))
+;;
+;;(set! js/XMLHttpRequest (nodejs/require (fullpath "xhr2")))
+;;(set! js/cheerio (nodejs/require (fullpath "cheerio")))
 
-(set! js/XMLHttpRequest (nodejs/require (fullpath "xhr2")))
-(set! js/cheerio (nodejs/require (fullpath "cheerio")))
-
-;;(set! js/XMLHttpRequest (nodejs/require "xhr2"))
-;;(set! js/cheerio (nodejs/require "cheerio"))
+(set! js/XMLHttpRequest (nodejs/require "xhr2"))
+(set! js/cheerio (nodejs/require "cheerio"))
 
 (nodejs/enable-util-print!)
 
