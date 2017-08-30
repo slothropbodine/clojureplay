@@ -25,8 +25,7 @@
       (let [dom (domfrom (:body resp))]
         (doseq [x (getvec 
                     (dom selector))]
-          (println "--------------------------------------------------------")
+          (println (apply str (repeat 79 "-")))
           (println x))
-        (println "--------------------------------------------------------")
-        )))
+        (println (apply str (repeat 79 "-"))))))
 
