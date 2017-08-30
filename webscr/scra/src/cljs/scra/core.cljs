@@ -26,4 +26,6 @@
 
 (go (let [resp (<! (http/get "http://reddit.com"))]   
       (let [dom (domfrom (:body resp))]
-        (println (get (getarr (dom selector))0)))))
+        (println 
+          (get (getarr (dom selector))
+               0)))))
