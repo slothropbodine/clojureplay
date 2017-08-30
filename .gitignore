@@ -2,3 +2,4 @@
 **node_modules/
 **swp
 webscr/scra/resources/public/js/main.js
+**.cljs_node_repl/
