@@ -23,10 +23,6 @@
 
 (println "Goodbye marky")
 
-(defn getntext [n cheerobj]
-  (println cheerobj))
-  ;;(println (.text (js/cheerio (aget cheerobj n)))))
-
 (defn getarr [cheerobj]
   (let [length (aget cheerobj "length")]
     (loop [x 0
@@ -35,10 +31,6 @@
         (identity goodarr)
         (recur (inc x) (conj goodarr (.text (js/cheerio (aget cheerobj x)))))))))
 
-(go                                                  
-  (let [resp (<! (http/get "http://reddit.com"))]   
-    (let [dom (domfrom (:body resp))]
-      (println (get (getarr (dom selector))5)))))
-
-(println "Goodbye marky")
-;;(.text (js/cheerio (aget (thisshit selector)1)))
+(go (let [resp (<! (http/get "http://reddit.com"))]   
+      (let [dom (domfrom (:body resp))]
+        (println (get (getarr (dom selector))5)))))
