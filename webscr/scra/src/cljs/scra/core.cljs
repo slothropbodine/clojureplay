@@ -21,11 +21,10 @@
                     (.text (js/cheerio (aget cheerobj x))))
                   (range length)))))
 
-(go (let [resp (<! (http/get "http://reddit.com"))]
-      (let [dom (domfrom (:body resp))]
-        (doseq [x (getvec 
-                    (dom selector))]
-          (println (apply str (repeat 79 "-")))
-          (println x))
-        (println (apply str (repeat 79 "-"))))))
-
+(go (let [resp (<! (http/get "http://reddit.com")) 
+          dom (domfrom (:body resp))]
+      (doseq [x (getvec 
+                  (dom selector))]
+        (println (apply str (repeat 79 "-")))
+        (println x))
+      (println (apply str (repeat 79 "-")))))
